@@ -18,14 +18,14 @@ contract UpgradeableToken2 is Initializable, ERC20Upgradeable, ERC20BurnableUpgr
 
     function initialize(string memory _name, 
         string memory _symbol, 
-        address mint_to) initializer public {
+        address mint_to) reinitializer(2) public {
         __ERC20_init(_name, _symbol);
         __ERC20Burnable_init();
         __ERC20Pausable_init();
         __Ownable_init(msg.sender);
         __ERC20Permit_init(_name);
         __UUPSUpgradeable_init();
-        _mint(mint_to, 300000000 ether);
+        // _mint(mint_to, 300000000 ether);
     }
 
     function pause() public onlyOwner {
